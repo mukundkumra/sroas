@@ -17,6 +17,10 @@ public class RestaurantApp {
         new RestaurantApp().runInteractive();
     }
 
+    void main() throws Exception {
+        runInteractive();
+    }
+
     private void runInteractive() throws Exception {
         try (Scanner scanner = new Scanner(System.in)) {
             LocaleManager locale = new LocaleManager();
@@ -29,13 +33,25 @@ public class RestaurantApp {
             String userInput = scanner.nextLine().trim();
             String user = userInput.isEmpty() ? locale.text("default.user") : userInput;
 
-            MenuService menuService = new MenuService();
+            MenuService menuService = new MenuService("  standard service mode  ");
             menuService.sortByPrice();
 
             ScopedValue.where(USER, user)
                     .run(() -> System.out.println(locale.text("current.user", USER.get())));
 
             List<MenuItem> menu = menuService.getMenu();
+            menuService.demonstrateLambdas();
+            menuService.demonstrateCollectors();
+            menuService.demonstrateIntermediateOps();
+
+            AnalyticsService analyticsService = new AnalyticsService();
+            analyticsService.runAnalytics(menu);
+
+            GathererService gathererService = new GathererService();
+            List<List<String>> windows = gathererService.windowMenuNames(
+                    menu.stream().map(MenuItem::name).toList());
+            System.out.println("Gathered windows: " + windows);
+
             System.out.println(locale.text("menu.selection.prompt"));
             for (int i = 0; i < menu.size(); i++) {
                 MenuItem item = menu.get(i);

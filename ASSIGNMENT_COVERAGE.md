@@ -1,0 +1,50 @@
+# OOP2 Assignment Coverage Review
+
+This file maps the requested assignment features to the current codebase.
+
+## Fundamentals
+
+- **Sorting (`Comparator.comparing`)**: ✅ Covered in `MenuService.sortByPrice()`.
+- **Lambdas (`Consumer`, `Predicate`, `Supplier`, `Function`)**: ✅ Covered in `MenuService.demonstrateLambdas()`.
+- **Streams**:
+  - **Terminal operations**:
+    - `min()` ✅ (`AnalyticsService.runAnalytics`)
+    - `max()` ✅ (`AnalyticsService.runAnalytics`)
+    - `count()` ✅ (`AnalyticsService.runAnalytics`)
+    - `findAny()` ✅ (`AnalyticsService.runAnalytics`)
+    - `findFirst()` ✅ (`AnalyticsService.runAnalytics`)
+    - `allMatch()` ✅ (`AnalyticsService.runAnalytics`)
+    - `anyMatch()` ✅ (`AnalyticsService.runAnalytics`)
+    - `noneMatch()` ✅ (`AnalyticsService.runAnalytics`)
+    - `forEach()` ✅ (`MenuService.demonstrateLambdas`)
+  - **`collect()` usage**:
+    - `Collectors.toMap()` ✅ (`MenuService.demonstrateCollectors`)
+    - `Collectors.groupingBy()` ✅ (`MenuService.demonstrateCollectors`)
+    - `Collectors.partitioningBy()` ✅ (`MenuService.demonstrateCollectors`)
+  - **Intermediate operations**:
+    - `filter()` ✅ (`MenuService.demonstrateLambdas`)
+    - `distinct()` ✅ (`MenuService.demonstrateIntermediateOps`)
+    - `limit()` ✅ (`MenuService.demonstrateIntermediateOps`, `RestaurantApp.runInteractive`)
+    - `map()` ✅ (`MenuService.demonstrateLambdas`)
+    - `sorted()` ✅ (`MenuService.demonstrateIntermediateOps`)
+- **Switch expressions and pattern matching**: ✅ Covered in `RestaurantApp.parsePayment` (switch expression) and `OrderService.paymentType` (pattern matching in switch).
+- **Sealed classes and interfaces**: ✅ Covered by sealed `Payment` interface.
+- **Date/Time API**: ✅ Covered by `LocalDateTime`, `ZonedDateTime`, `DateTimeFormatter`, `ZoneId`.
+- **Records**: ✅ Covered by `MenuItem` and `Order`.
+
+## Advanced
+
+- **Concurrency (`ExecutorService` + `Callable`)**: ✅ Covered in `KitchenService.processOrders`.
+- **NIO2**: ✅ Covered by `java.nio.file.Files`, `Path`, `Paths`, `StandardOpenOption` in `FileService`.
+- **Localisation**: ✅ Covered in `LocaleManager` + `messages_en.properties` and `messages_es.properties`.
+- **Java 25 - Compact source files + instance main methods (JEP 512)**: ✅ Covered in `RestaurantApp` via instance `main()` method (JEP 512).
+- **Java 25 - Flexible constructor bodies (JEP 513)**: ✅ Covered in `MenuService(String modeInput)` constructor using pre-`this()` logic.
+
+## Extra marks
+
+- **Java 25 - Scoped Values**: ✅ Covered (`ScopedValue` in `RestaurantApp`).
+- **Java 25 - Stream Gatherers**: ✅ Covered in `GathererService.windowMenuNames`.
+
+## Conclusion
+
+All requested features are now represented in the project.
