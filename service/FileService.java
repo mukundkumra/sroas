@@ -44,10 +44,10 @@ public class FileService {
                 .map(item -> item.name() + " ($" + String.format("%.2f", item.price()) + ")")
                 .collect(Collectors.joining(", "));
 
-        return "orderId=" + order.orderId()
-                + " | time=" + order.orderTime()
-                + " | payment=" + order.payment().getClass().getSimpleName().replace("Payment", "")
-                + " | total=$" + String.format("%.2f", order.totalAmount())
-                + " | items=[" + itemNames + "]";
+        return "{\"orderId\": " + order.orderId()
+                + ", \"time\": " + order.orderTime()
+                + ", \"payment\": \"" + order.payment().getClass().getSimpleName().replace("Payment", "")
+                + "\", \"total\": " + String.format("%.2f", order.totalAmount())
+                + ", \"items\": [" + itemNames + "]}";
     }
 }
