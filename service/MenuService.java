@@ -17,7 +17,6 @@ public class MenuService {
         menu.add(new MenuItem(UUID.randomUUID().toString(), "Burger", Category.MAIN, 9.99, true));
         menu.add(new MenuItem(UUID.randomUUID().toString(), "Ice Cream", Category.DESSERT, 5.99, false));
         menu.add(new MenuItem(UUID.randomUUID().toString(), "Coke", Category.DRINK, 2.99, true));
-        menu.add(new MenuItem(UUID.randomUUID().toString(), "Coke", Category.DRINK, 2.99, true));
     }
 
     public MenuService(String modeInput) {
