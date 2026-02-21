@@ -19,36 +19,42 @@ public class RestaurantApp {
 
     private void runInteractive() throws Exception {
         try (Scanner scanner = new Scanner(System.in)) {
-            System.out.print("Enter user name (default: Manager): ");
+            LocaleManager locale = new LocaleManager();
+
+            System.out.print("Choose language (en/es, default: en): ");
+            locale.setLocale(scanner.nextLine());
+            locale.printWelcome();
+
+            System.out.print(locale.text("prompt.user", locale.text("default.user")));
             String userInput = scanner.nextLine().trim();
-            String user = userInput.isEmpty() ? "Manager" : userInput;
+            String user = userInput.isEmpty() ? locale.text("default.user") : userInput;
 
             MenuService menuService = new MenuService();
             menuService.sortByPrice();
 
             ScopedValue.where(USER, user)
-                    .run(() -> System.out.println("Current User: " + USER.get()));
-
-            LocaleManager locale = new LocaleManager();
-            locale.printWelcome("en");
+                    .run(() -> System.out.println(locale.text("current.user", USER.get())));
 
             List<MenuItem> menu = menuService.getMenu();
-            System.out.println("Select items by number (comma-separated), e.g. 1,3:");
+            System.out.println(locale.text("menu.selection.prompt"));
             for (int i = 0; i < menu.size(); i++) {
                 MenuItem item = menu.get(i);
-                System.out.printf("%d) %s - %.2f (%s)%n", i + 1, item.name(), item.price(),
-                        item.available() ? "available" : "unavailable");
+                String availability = item.available()
+                        ? locale.text("status.available")
+                        : locale.text("status.unavailable");
+                System.out.println(locale.text("menu.item.format",
+                        i + 1, item.name(), item.price(), availability));
             }
 
-            System.out.print("Your selection: ");
+            System.out.print(locale.text("prompt.selection"));
             String selection = scanner.nextLine();
             List<MenuItem> selectedItems = parseSelection(selection, menu);
             if (selectedItems.isEmpty()) {
                 selectedItems = menu.stream().limit(2).toList();
-                System.out.println("No valid selection found. Using first two menu items.");
+                System.out.println(locale.text("selection.fallback"));
             }
 
-            System.out.print("Payment type (card/cash/online, default: card): ");
+            System.out.print(locale.text("prompt.payment"));
             Payment payment = parsePayment(scanner.nextLine());
 
             OrderService orderService = new OrderService();
