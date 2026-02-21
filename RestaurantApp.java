@@ -99,7 +99,12 @@ public class RestaurantApp {
             try {
                 int idx = Integer.parseInt(trimmed) - 1;
                 if (idx >= 0 && idx < menu.size()) {
-                    selected.add(menu.get(idx));
+                    MenuItem item = menu.get(idx);
+                    if (item.available()) {
+                        selected.add(item);
+                    } else {
+                        System.out.println("Skipping unavailable item: " + item.name());
+                    }
                 }
             } catch (NumberFormatException ignored) {
                 // Ignore invalid tokens
