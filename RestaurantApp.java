@@ -85,7 +85,7 @@ public class RestaurantApp {
 
             FileService fileService = new FileService();
             fileService.saveOrder(order);
-            fileService.readOrders();
+            fileService.printLastSavedOrder();
         }
     }
 
