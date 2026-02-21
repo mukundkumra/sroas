@@ -9,11 +9,15 @@ import java.util.List;
 import java.util.stream.Gatherers;
 import java.util.stream.Stream;
 
-class RestaurantApp {
+public class RestaurantApp {
 
     static final ScopedValue<String> USER = ScopedValue.newInstance();
 
-    void main() throws Exception {
+    public static void main(String[] args) throws Exception {
+        new RestaurantApp().run();
+    }
+
+    private void run() throws Exception {
 
         ScopedValue.where(USER, "Manager")
                 .run(() -> System.out.println("Current User: " + USER.get()));
