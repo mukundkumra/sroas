@@ -1,0 +1,67 @@
+package restaurant.service;
+
+import restaurant.model.*;
+
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.Collectors;
+
+public class MenuService {
+
+    private final List<MenuItem> menu = new ArrayList<>();
+
+    public MenuService() {
+        menu.add(new MenuItem(UUID.randomUUID().toString(), "Pizza", Category.MAIN, 12.99, true));
+        menu.add(new MenuItem(UUID.randomUUID().toString(), "Burger", Category.MAIN, 9.99, true));
+        menu.add(new MenuItem(UUID.randomUUID().toString(), "Ice Cream", Category.DESSERT, 5.99, false));
+        menu.add(new MenuItem(UUID.randomUUID().toString(), "Coke", Category.DRINK, 2.99, true));
+    }
+
+    public List<MenuItem> getMenu() {
+        return menu;
+    }
+
+    public void sortByPrice() {
+        menu.sort(Comparator.comparing(MenuItem::price)
+                .thenComparing(MenuItem::name));
+    }
+
+    public void demonstrateLambdas() {
+
+        Consumer<MenuItem> printer = item -> System.out.println(item.name());
+
+        Predicate<MenuItem> available = MenuItem::available;
+
+        Function<MenuItem, Double> priceExtractor = MenuItem::price;
+
+        Supplier<String> idGenerator = () -> UUID.randomUUID().toString();
+
+        menu.stream()
+                .filter(available)
+                .forEach(printer);
+
+        double totalPrice = menu.stream()
+                .map(priceExtractor)
+                .reduce(0.0, Double::sum);
+
+        System.out.println("Total price of menu items: " + totalPrice);
+
+        System.out.println("Generated ID: " + idGenerator.get());
+    }
+
+    public void demonstrateCollectors() {
+
+        var grouped = menu.stream()
+                .collect(Collectors.groupingBy(MenuItem::category));
+
+        var partitioned = menu.stream()
+                .collect(Collectors.partitioningBy(MenuItem::available));
+
+        var toMap = menu.stream()
+                .collect(Collectors.toMap(MenuItem::id, MenuItem::name));
+
+        System.out.println(grouped);
+        System.out.println(partitioned);
+        System.out.println(toMap);
+    }
+}
