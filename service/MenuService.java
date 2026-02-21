@@ -9,16 +9,29 @@ import java.util.stream.Collectors;
 public class MenuService {
 
     private final List<MenuItem> menu = new ArrayList<>();
+    private final String modeLabel;
 
     public MenuService() {
+        this.modeLabel = "default";
         menu.add(new MenuItem(UUID.randomUUID().toString(), "Pizza", Category.MAIN, 12.99, true));
         menu.add(new MenuItem(UUID.randomUUID().toString(), "Burger", Category.MAIN, 9.99, true));
         menu.add(new MenuItem(UUID.randomUUID().toString(), "Ice Cream", Category.DESSERT, 5.99, false));
         menu.add(new MenuItem(UUID.randomUUID().toString(), "Coke", Category.DRINK, 2.99, true));
+        menu.add(new MenuItem(UUID.randomUUID().toString(), "Coke", Category.DRINK, 2.99, true));
+    }
+
+    public MenuService(String modeInput) {
+        modeInput = modeInput == null ? "default" : modeInput.trim().toLowerCase();
+        this();
+        System.out.println("Menu service mode: " + modeInput);
     }
 
     public List<MenuItem> getMenu() {
         return menu;
+    }
+
+    public String getModeLabel() {
+        return modeLabel;
     }
 
     public void sortByPrice() {
@@ -63,5 +76,16 @@ public class MenuService {
         System.out.println(grouped);
         System.out.println(partitioned);
         System.out.println(toMap);
+    }
+
+    public void demonstrateIntermediateOps() {
+        List<String> processedNames = menu.stream()
+                .map(MenuItem::name)
+                .distinct()
+                .sorted()
+                .limit(3)
+                .toList();
+
+        System.out.println("Distinct sorted menu names (limit 3): " + processedNames);
     }
 }
