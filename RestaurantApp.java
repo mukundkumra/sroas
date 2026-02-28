@@ -12,9 +12,6 @@ import java.util.Scanner;
 public class RestaurantApp {
 
     static final ScopedValue<String> USER = ScopedValue.newInstance();
-    private static final boolean SHOW_DEMO_OUTPUT =
-            Boolean.parseBoolean(System.getProperty("sroas.demo", "false"));
-
     public static void main(String[] args) throws Exception {
         new RestaurantApp().runInteractive();
     }
@@ -42,19 +39,17 @@ public class RestaurantApp {
                     .run(() -> System.out.println(locale.text("current.user", USER.get())));
 
             List<MenuItem> menu = menuService.getMenu();
-            if (SHOW_DEMO_OUTPUT) {
-                menuService.demonstrateLambdas();
-                menuService.demonstrateCollectors();
-                menuService.demonstrateIntermediateOps();
+            menuService.demonstrateLambdas();
+            menuService.demonstrateCollectors();
+            menuService.demonstrateIntermediateOps();
 
-                AnalyticsService analyticsService = new AnalyticsService();
-                analyticsService.runAnalytics(menu);
+            AnalyticsService analyticsService = new AnalyticsService();
+            analyticsService.runAnalytics(menu);
 
-                GathererService gathererService = new GathererService();
-                List<List<String>> windows = gathererService.windowMenuNames(
-                        menu.stream().map(MenuItem::name).toList());
-                System.out.println("Gathered windows: " + windows);
-            }
+            GathererService gathererService = new GathererService();
+            List<List<String>> windows = gathererService.windowMenuNames(
+                    menu.stream().map(MenuItem::name).toList());
+            System.out.println("Gathered windows: " + windows);
 
             System.out.println(locale.text("menu.selection.prompt"));
             for (int i = 0; i < menu.size(); i++) {
