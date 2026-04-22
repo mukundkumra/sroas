@@ -32,7 +32,7 @@ public class RestaurantApp {
             String userInput = scanner.nextLine().trim();
             String user = userInput.isEmpty() ? locale.text("default.user") : userInput;
 
-            MenuService menuService = new MenuService("  standard service mode  ");
+            MenuService menuService = new MenuService("  Standard Service Mode  ");
             menuService.sortByPrice();
 
             ScopedValue.where(USER, user)
@@ -49,7 +49,8 @@ public class RestaurantApp {
             GathererService gathererService = new GathererService();
             List<List<String>> windows = gathererService.windowMenuNames(
                     menu.stream().map(MenuItem::name).toList());
-            System.out.println("Gathered windows: " + windows);
+            System.out.println("Gatherers:");
+            System.out.println("Gathered Windows: " + windows + "\n");
 
             System.out.println(locale.text("menu.selection.prompt"));
             for (int i = 0; i < menu.size(); i++) {

@@ -9,6 +9,8 @@ public class AnalyticsService {
 
     public void runAnalytics(List<MenuItem> items) {
 
+        System.out.println("Analytics:");
+
         items.stream().min(Comparator.comparing(MenuItem::price))
                 .ifPresent(i -> System.out.println("Cheapest: " + i.name()));
 
@@ -21,6 +23,6 @@ public class AnalyticsService {
         System.out.println("None over 100: " + items.stream().noneMatch(i -> i.price() > 100));
 
         items.stream().findFirst().ifPresent(i -> System.out.println("First: " + i.name()));
-        items.stream().findAny().ifPresent(i -> System.out.println("Any: " + i.name()));
+        items.stream().findAny().ifPresent(i -> System.out.println("Any: " + i.name() + "\n"));
     }
 }

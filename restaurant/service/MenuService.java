@@ -20,9 +20,9 @@ public class MenuService {
     }
 
     public MenuService(String modeInput) {
-        modeInput = modeInput == null ? "default" : modeInput.trim().toLowerCase();
+        modeInput = modeInput == null ? "default" : modeInput.trim();
         this();
-        System.out.println("Menu service mode: " + modeInput);
+        System.out.println("Menu Service Mode: " + modeInput);
     }
 
     public List<MenuItem> getMenu() {
@@ -39,6 +39,7 @@ public class MenuService {
     }
 
     public void demonstrateLambdas() {
+        System.out.println("\nLambdas:");
 
         Consumer<MenuItem> printer = item -> System.out.println(item.name());
 
@@ -56,9 +57,9 @@ public class MenuService {
                 .map(priceExtractor)
                 .reduce(0.0, Double::sum);
 
-        System.out.println("Total price of menu items: " + totalPrice);
+        System.out.println("Total Price of Menu Items: " + totalPrice);
 
-        System.out.println("Generated ID: " + idGenerator.get());
+        System.out.println("Generated ID: " + idGenerator.get() + "\n");
     }
 
     public void demonstrateCollectors() {
@@ -72,9 +73,10 @@ public class MenuService {
         var toMap = menu.stream()
                 .collect(Collectors.toMap(MenuItem::id, MenuItem::name));
 
-        System.out.println(grouped);
-        System.out.println(partitioned);
-        System.out.println(toMap);
+        System.out.println("Collectors:");
+        System.out.println("Grouped by category: " + grouped + "\n");
+        System.out.println("Partitioned by availability: " + partitioned + "\n");
+        System.out.println("Mapped by ID: " + toMap + "\n\n");
     }
 
     public void demonstrateIntermediateOps() {
@@ -85,6 +87,7 @@ public class MenuService {
                 .limit(3)
                 .toList();
 
-        System.out.println("Distinct sorted menu names (limit 3): " + processedNames);
+        System.out.println("Intermediate Operations:");
+        System.out.println("Distinct Sorted Menu Names (limit 3): " + processedNames + "\n");
     }
 }

@@ -8,7 +8,7 @@ import java.util.concurrent.*;
 public class KitchenService {
 
     public KitchenService() {
-        System.out.println("Kitchen Initialised");
+        System.out.println("Kitchen Initialised...");
     }
 
     public void processOrders(List<Order> orders) throws Exception {
