@@ -92,42 +92,35 @@ sroas/
 
 ---
 
-## How to Run
-
-> **Requires Java 25 with preview features enabled.**
-
-### Compile
-
-```bash
-javac --release 25 --enable-preview -d out \
-  RestaurantApp.java \
-  model/*.java \
-  service/*.java \
-  util/LocaleManager.java
-```
-
 ### Run
 
 ```bash
-java --enable-preview -cp out restaurant.RestaurantApp
+java restaurant/RestaurantApp.java
 ```
 
 ### Sample Session
 
 ```
-Choose language (en/es, default: en): es
-¡Bienvenido al Sistema de Restaurante!
+Choose language (en/es, default: en): en
+Welcome to Smart Restaurant Order and Analytics System (SROAS)!
 Enter your name (default: Guest): Mukund
+Menu service mode: standard service mode
 Current user: Mukund
 
-1. Pasta Carbonara   - €12.50  [Available]
-2. Margherita Pizza  - €10.00  [Available]
-3. Caesar Salad      - €8.50   [Available]
+[Demonstrated Features: Lambdas, Collectors, Analytics, Gatherers]
 
-Enter selection (e.g. 1,2): 1,3
+Select items by number (comma-separated), e.g. 1,3:
+1) Coke - 2.99 (available)
+2) Ice Cream - 5.99 (unavailable)
+3) Burger - 9.99 (available)
+4) Pizza - 12.99 (available)
+
+Your selection (e.g. 1,3): 1,4
 Enter payment method (cash/card/online): card
-Order placed. Kitchen processing...
-Order saved to orders.txt
+Kitchen Initialised...
+Processed Order: {orderId}
+Saved Order: {orderObject}
+[Order saved to orders.txt]
 ```
 
 ---
