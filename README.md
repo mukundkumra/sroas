@@ -1,4 +1,4 @@
-# Restaurant Order and Analytics System (SROAS)
+# Smart Restaurant Order and Analytics System (SROAS)
 
 ## Overview
 
