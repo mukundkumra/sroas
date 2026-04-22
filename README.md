@@ -33,7 +33,7 @@ sroas/
 │   └── FileService.java            # NIO2: Files, Path, StandardOpenOption
 ├── util/
 │   ├── LocaleManager.java          # Localisation: ResourceBundle, Locale
-│   └── DateUtil.jav                # Date/Time API: LocalDateTime, ZonedDateTime, DateTimeFormatter
+│   └── DateUtil.java               # Date/Time API: LocalDateTime, ZonedDateTime, DateTimeFormatter
 ├── messages_en.properties          # English locale strings
 └── messages_es.properties          # Spanish locale strings
 ```
