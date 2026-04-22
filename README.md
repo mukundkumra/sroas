@@ -106,8 +106,6 @@ javac --release 25 --enable-preview -d out \
   util/LocaleManager.java
 ```
 
-> **Note:** `util/DateUtil.jav` uses a non-standard extension and must be included explicitly or renamed to `DateUtil.java`.
-
 ### Run
 
 ```bash
@@ -151,6 +149,4 @@ Order saved to orders.txt
 
 ## Assignment Coverage
 
-Full feature-to-code mapping is documented in [`ASSIGNMENT_COVERAGE.md`](./ASSIGNMENT_COVERAGE.md).
-
-This project was submitted as the OOP2 module assignment (30% weighting), demonstrating all required fundamental and advanced Java features, plus both extra-mark Java 25 features.
+This project was submitted as the OOP-II Module Assignment (30%), demonstrating all required fundamental and advanced Java features, plus both extra-mark Java 25 features.
