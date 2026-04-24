@@ -95,7 +95,7 @@ sroas/
 ### Run
 
 ```bash
-java restaurant/RestaurantApp.java
+java RestaurantApp.java
 ```
 
 ### Sample Session
